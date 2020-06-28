@@ -1,47 +1,29 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# feature 'User can create articles' do
-#     before do
-#       visit root_path
-#       click_on "Sign in"
+feature 'User can create articles' do
+  context 'creating message'  
+  before do
+      visit root_path
+      create(:user, email: 'odeane@mail.com', password: '123456')
+      click_on "Sign in"
+      fill_in 'Email', :with =>'odeane@mail.com'
+      fill_in 'Password', :with => '123456'
+      click_on 'Log in'
+    end
 
-#     end
-  
-#   context "Successfully create an article " do
-#     before do
-#       fill_in "Title", with: "Happy holidays"
-#       fill_in "Content", with: "Buy your gifts now!"
-#       click_on "Create Article"
-#     end
-  
-#     it 'User should be on article show page' do
-#       article = Article.find_by(title: 'Happy holidays')
-#       expect(current_path).to eq article_path(article)
-#     end
-  
-#     it 'User should see success message' do
-#       expect(page).to have_content 'Article was successfully created.'
-#     end
-  
-#     it 'User should see article title' do
-#       expect(page).to have_content 'Happy holidays'
-#     end
-  
-#     it 'User should see article content' do
-#       expect(page).to have_content 'Buy your gifts now!'
-#     end
-#   end
-  
-#   context "User doesn't enter a title for the article" do
-#     before do
-#       fill_in "Content", with: "Buy your gifts now!"
-#       click_on "Create Article"
-#     end
-  
-#     it 'User should see error message' do
-#       expect(page).to have_content "Title can't be blank"
-#     end
-#   end
-  
-  
-#   end
+    it 'expect page to say successfully logged in' do
+      expect(page).to have_content 'Signed in successfully'
+    end
+
+    it 'logged in users should see New article option ' do
+      expect(page).to have_content 'New Article'
+      click_on 'New Article'
+      fill_in 'Title', :with => 'Craft blog'
+      fill_in 'Content', :with => 'Great place to learn code'
+      click_on 'Create Article'
+      expect(page).to have_content 'Craft blog'
+    end
+
+ 
+end
+
