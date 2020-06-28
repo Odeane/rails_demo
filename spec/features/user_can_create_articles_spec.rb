@@ -24,6 +24,6 @@ feature 'User can create articles' do
       expect(page).to have_content 'Craft blog'
     end
 
- 
+
 end
 
