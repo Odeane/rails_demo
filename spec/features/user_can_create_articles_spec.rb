@@ -3,7 +3,8 @@
 # feature 'User can create articles' do
 #     before do
 #       visit root_path
-#       click_on "New Article"
+#       click_on "Sign in"
+
 #     end
   
 #   context "Successfully create an article " do

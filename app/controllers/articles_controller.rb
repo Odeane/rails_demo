@@ -19,4 +19,6 @@ class ArticlesController < ApplicationController
     else redirect_to new_article_path, notice: 'Error try again'
   end
 end
+
+
 end
