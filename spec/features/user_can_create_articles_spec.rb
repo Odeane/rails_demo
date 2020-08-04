@@ -3,16 +3,16 @@ require 'rails_helper'
 feature 'User can create articles' do
   context 'creating message'  
   before do
+     create(:user, email: 'odeane@mail.com', password: '123456')
       visit root_path
-      create(:user, email: 'odeane@mail.com', password: '123456')
-      click_on "Sign in"
+      click_link ("Sign in")
       fill_in 'Email', :with =>'odeane@mail.com'
       fill_in 'Password', :with => '123456'
       click_on 'Log in'
     end
 
     it 'expect page to say successfully logged in' do
-      expect(page).to have_content 'Signed in successfully'
+      expect(page).to have_content 'Signed in successfully.'
     end
 
     it 'logged in users should see New article option ' do
